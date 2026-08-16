@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Urban Vigilance | Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #0b1326;
+            color: #dae2fd;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            width: 600px;
+            padding: 50px;
+            border-radius: 20px;
+            background: rgba(23, 31, 51, 0.8);
+            border: 1px solid rgba(140, 144, 159, 0.25);
+            text-align: center;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            color: #a9c5ff;
+        }
+
+        .logout {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            border-radius: 10px;
+            background: #e11d48;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>URBAN VIGILANCE</h1>
+
+    <h2>Dashboard</h2>
+
+    <p>
+        Welcome,
+        <strong>{{ request.user.username }}</strong>
+    </p>
+
+    <p>
+        Authentication is working successfully.
+    </p>
+
+    <a
+        class="logout"
+        href="{% url 'logout' %}"
+    >
+        Logout
+    </a>
+
+</div>
+
+</body>
+</html>
