@@ -3,9 +3,11 @@ from . import views
 
 
 urlpatterns = [
+
     path(
         "",
-        views.home,
+        views.dashboard_view,
         name="dashboard"
     ),
+
 ]
