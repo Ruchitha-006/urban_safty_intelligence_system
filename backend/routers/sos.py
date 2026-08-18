@@ -1,25 +1,36 @@
-from backend.database import create_sos_event
+from fastapi import (
+    APIRouter,
+    Request,
+)
+
+from backend.schemas import (
+    SOSRequest,
+)
+
+from backend.services.sos import (
+    trigger_sos,
+)
 
 
-def trigger_sos(
-    username: str | None,
-    latitude: float,
-    longitude: float,
-    message: str,
-) -> dict:
+router = APIRouter(
+    prefix="/api/sos",
+    tags=["SOS"],
+)
 
-    create_sos_event(
-        username=username,
-        latitude=latitude,
-        longitude=longitude,
-        message=message,
+
+@router.post("/")
+def create_sos(
+    request: Request,
+    payload: SOSRequest,
+):
+
+    username = request.session.get(
+        "username"
     )
 
-    return {
-        "success": True,
-        "message": (
-            "SOS event recorded successfully."
-        ),
-        "latitude": latitude,
-        "longitude": longitude,
-    }
+    return trigger_sos(
+        username=username,
+        latitude=payload.latitude,
+        longitude=payload.longitude,
+        message=payload.message,
+    )
